@@ -2,7 +2,7 @@ package leetcode
 
 import "strings"
 
-func MergeAlternately(word1 string, word2 string) string {
+func mergeAlternately(word1 string, word2 string) string {
 	w1Index := 0
 	w2Index := 0
 	l1 := len(word1)

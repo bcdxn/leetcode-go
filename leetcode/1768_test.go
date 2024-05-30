@@ -1,10 +1,9 @@
-package leetcode_test
+package leetcode
 
 import (
 	"fmt"
 	"testing"
 
-	"github.com/bcdxn/leetcode-go/leetcode"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -29,7 +28,7 @@ func TestMergeStringsAlternatively(t *testing.T) {
 
 	for i, tc := range cases {
 		t.Run(fmt.Sprintf("Case %d", i), func(t *testing.T) {
-			assert.Equal(t, tc.expected, leetcode.MergeAlternately(tc.input[0], tc.input[1]))
+			assert.Equal(t, tc.expected, mergeAlternately(tc.input[0], tc.input[1]))
 		})
 	}
 }
