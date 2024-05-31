@@ -1,40 +1,26 @@
 package leetcode
 
-import "math"
-
+// ABCABC ABC
+// ABCABCABC+ABC == ABC+ABCABCABC
+// This fact must be true for there to be a repeated pattern
 func gcdOfStrings(str1 string, str2 string) string {
-	divisor := ""
-	l1 := len(str1)
-	l2 := len(str2)
-	minLen := int(math.Min(float64(l1), float64(l2)))
-	maxLen := int(math.Max(float64(l1), float64(l2)))
-	// must be a common prefix
-	for i := 0; i < minLen; i++ {
-		if str1[i] == str2[i] {
-			divisor += string(str1[i])
-		} else {
-			continue
-		}
+	if str1+str2 != str2+str1 {
+		return ""
 	}
-	// must be evenly divisible by the devisor
-	for len(divisor) > 0 && (minLen%len(divisor) != 0 || maxLen%len(divisor) != 0) {
-		divisor = divisor[0 : len(divisor)-1]
-	}
-	if len(divisor) < 1 {
-		return divisor
-	}
-	// both strings must be made entirely of the divisor
-	for i := 0; i < len(str1); i++ {
-		if str1[i] != divisor[i%len(divisor)] {
-			return ""
-		}
-	}
-	// both strings must be made entirely of the divisor
-	for i := 0; i < len(str2); i++ {
-		if str2[i] != divisor[i%len(divisor)] {
-			return ""
-		}
+	// Since there is guaranteed to be a repeated pattern we can simply return the greatest
+	// common devisor
+	minStr := str1
+	if len(str2) < len(minStr) {
+		minStr = str2
 	}
 
-	return divisor
+	gcd := len(minStr)
+	for gcd > 0 {
+		if len(str1)%gcd == 0 && len(str2)%gcd == 0 {
+			break
+		}
+		gcd--
+	}
+
+	return minStr[:gcd]
 }
