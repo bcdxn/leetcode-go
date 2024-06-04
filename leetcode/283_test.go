@@ -24,6 +24,10 @@ func TestMoveZeroes(t *testing.T) {
 			input:    []int{2, 1},
 			expected: []int{2, 1},
 		},
+		{
+			input:    []int{1, 0, 1},
+			expected: []int{1, 1, 0},
+		},
 	}
 
 	for i, tc := range cases {

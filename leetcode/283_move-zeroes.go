@@ -6,13 +6,21 @@ func moveZeroes(nums []int) {
 		return
 	}
 	// holds index of the right most non-zero
-	partition := -1
+	var p int
 
-	for j := 0; j < len(nums); j++ {
-		if nums[j] != 0 {
-			partition++
-			nums[partition], nums[j] = nums[j], nums[partition]
+	// Find first 0
+	for i := 0; i < len(nums); i++ {
+		p = i
+		if nums[i] == 0 {
+			break
 		}
 	}
 
+	for j := p + 1; j < len(nums); j++ {
+		if nums[j] != 0 {
+			nums[p], nums[j] = nums[j], nums[p]
+			// increment the partition since we just increased the index of the right-most non-zero
+			p++
+		}
+	}
 }
