@@ -31,3 +31,17 @@ func increasingTriplet(nums []int) bool {
 
 	return false
 }
+
+/* Info
+------------------------------------------------------------------------------------------------- */
+
+// # Description:
+//
+// Given an integer array nums, return true if there exists a triple of indices (i, j, k) such that
+// i < j < k and nums[i] < nums[j] < nums[k]. If no such indices exists, return false.
+//
+// Note that you must do this in-place without making a copy of the array.
+//
+// https://leetcode.com/problems/increasing-triplet-subsequence
+//
+// tags: [array/string, medium, phard]
