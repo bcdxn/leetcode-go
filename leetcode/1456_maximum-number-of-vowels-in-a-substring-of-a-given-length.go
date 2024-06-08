@@ -27,6 +27,9 @@ func maxVowels(s string, k int) int {
 	return maxVowels
 }
 
+/* Info
+------------------------------------------------------------------------------------------------- */
+
 // # Description:
 //
 // Given a string s and an integer k, return the maximum number of vowel letters in any substring of
