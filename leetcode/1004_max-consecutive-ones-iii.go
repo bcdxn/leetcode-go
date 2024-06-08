@@ -4,30 +4,29 @@ func longestOnes(nums []int, k int) int {
 	c := 0
 	mc := 0
 	f := 0
-	i := 0
-	j := 0
+	l := 0
+	r := 0
 
-	for i <= j && j < len(nums) {
-		for j < len(nums) && f <= k {
-			if nums[j] == 0 {
-				f++
-			}
-
-			c++
-			j++
-
-			if f <= k && c > mc {
-				mc = c
-			}
+	for r < len(nums) {
+		if nums[r] == 0 {
+			f++
 		}
 
-		for f > k && i <= j {
-			if nums[i] == 0 {
+		c++
+
+		if f > k {
+			if nums[l] == 0 {
 				f--
 			}
+			l++
 			c--
-			i++
 		}
+
+		if f <= k && c > mc {
+			mc = c
+		}
+
+		r++
 	}
 
 	return mc
@@ -44,8 +43,7 @@ func longestOnes(nums []int, k int) int {
 // https://leetcode.com/problems/max-consecutive-ones-iii/description
 //
 // Notes: kind of a combination of sliding window and two pointers. Move right boundary out to the
-// right until max bits flipped (or end). Move left boundary in until we have more bits to flip.
-// Keeping track of when to update max count was the trick (inside of right boundary movement &&
-// ensure we haven't flipped too many bits yet)
+// right until end. Move left boundary when we've flipped too many bits. only update max count when
+// we haven't flipped too many bits
 //
 // tags: [slidingwindow, medium, phard]
