@@ -23,3 +23,16 @@ func uniqueOccurrences(arr []int) bool {
 
 	return true
 }
+
+/* Info
+------------------------------------------------------------------------------------------------- */
+
+// # Description:
+//
+// Given an array of integers arr, return true if the number of occurrences of each value in the array is unique or false otherwise.
+//
+// https://leetcode.com/problems/unique-number-of-occurrences
+//
+// Notes: Use a set to count occurences. use another set to check uniqueness of occurence counts.
+//
+// tags: [hashmap/set, easy]
