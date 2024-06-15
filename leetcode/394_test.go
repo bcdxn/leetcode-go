@@ -24,6 +24,10 @@ func TestDecodeString(t *testing.T) {
 			input:    "2[abc]3[cd]ef",
 			expected: "abcabccdcdcdef",
 		},
+		{
+			input:    "3[abc2[def]]",
+			expected: "abcdefdefabcdefdefabcdefdef",
+		},
 	}
 
 	for i, tc := range cases {

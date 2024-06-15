@@ -2,9 +2,23 @@ package leetcode
 
 import "strconv"
 
+type Stack[T any] struct {
+	s []T
+}
+
+func (s *Stack[T]) push(e T) {
+	s.s = append(s.s, e)
+}
+
+func (s *Stack[T]) pop() T {
+	e := s.s[len(s.s)-1]
+	s.s = s.s[0 : len(s.s)-1]
+	return e
+}
+
 func decodeString(s string) string {
-	countStack := []int{}
-	sequenceStack := [][]byte{}
+	countStack := Stack[int]{}
+	sequenceStack := Stack[[]byte]{}
 
 	sequence := []byte{}
 	count := 0
@@ -12,20 +26,14 @@ func decodeString(s string) string {
 		if _, err := strconv.Atoi(string(s[i])); err == nil {
 			count = count*10 + int(s[i]) - '0'
 		} else if s[i] == '[' {
-			countStack = append(countStack, count)
-			sequenceStack = append(sequenceStack, sequence)
-			// reset count
-			count = 0
-			// reset sequence
-			sequence = []byte{}
+			countStack.push(count)
+			sequenceStack.push(sequence)
+			count = 0           // reset count
+			sequence = []byte{} // reset sequence
 		} else if s[i] == ']' {
-			// 'pop' count
-			k := countStack[len(countStack)-1]
-			countStack = countStack[:len(countStack)-1]
+			k := countStack.pop()
 			tmp := sequence
-			// 'pop' sequence
-			sequence = sequenceStack[len(sequenceStack)-1]
-			sequenceStack = sequenceStack[:len(sequenceStack)-1]
+			sequence = sequenceStack.pop()
 
 			for k > 0 {
 				sequence = append(sequence, tmp...)
