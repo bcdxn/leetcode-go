@@ -65,4 +65,4 @@ func decodeString(s string) string {
 //
 // Notes: Manage 2 stacks, one for the counts, and one for the sub sequences
 //
-// tags: [stack, medium, phard]
+// tags: [stack, medium, pxhard]
